@@ -1,4 +1,5 @@
     import { projectList, deleteProject, createProject, saveToLocalStorage } from './todolist.js';
+    import { Project } from "./project.js";
 
     export class DOMManager {
         constructor(containerSelector) {
@@ -71,6 +72,11 @@
     
                     const todoDescription = document.createElement('p');
                     todoDescription.textContent = todo.description;
+
+                    // Toggle button to expand/collapse details
+                    todoDiv.addEventListener('click', () => {
+                        todoDiv.classList.toggle('todo-expanded');
+                    });
     
                     todoDiv.appendChild(todoTitle);
                     todoDiv.appendChild(todoDueDate);
@@ -90,9 +96,11 @@
     
                     deleteTodoButton.addEventListener('click', (e) => {
                         e.stopPropagation();
-                        project.deleteTodo(todo.title);
+                        project.deleteTodo(todo.title); // Now, this should work correctly
+                        saveToLocalStorage();
                         this.renderProjects();
                     });
+                    
     
                     projectDiv.appendChild(todoDiv);
                 });
