@@ -3,7 +3,7 @@ import { Todo } from './todo.js';
 
 const defaultProject = new Project('Default');
 
-export const projectList = JSON.parse(localStorage.getItem('projectList')).map(projectData => {
+export const projectList = JSON.parse(localStorage.getItem('projectList'))?.map(projectData => {
     const project = new Project(projectData.projectName);
     project.todoList = projectData.todoList; // Copy over the todoList
     return project;
