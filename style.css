@@ -1,0 +1,262 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+    box-sizing: border-box;
+}
+
+h1, h2 {
+    margin: 0;
+    padding: 0;
+}
+
+#container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Project Styles */
+.project {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: #f9f9fc;
+}
+
+.project h2 {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Todo Styles */
+.todo {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.todo h1 {
+    font-size: 1.25rem;
+    color: #34495e;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.todo p {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    margin: 5px 0;
+    display: none; /* Hide additional details by default */
+}
+
+/* Priority Colors */
+.todo[data-priority="1"] {
+    border-left: 5px solid #e74c3c;
+}
+
+.todo[data-priority="2"] {
+    border-left: 5px solid #f39c12;
+}
+
+.todo[data-priority="3"] {
+    border-left: 5px solid #27ae60;
+}
+
+/* Due Date Styling */
+.todo-due-date {
+    font-size: 0.9rem;
+    color: #8e44ad;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+/* Ranking Styles */
+.todo-ranking {
+    font-size: 0.8rem;
+    color: #ffffff;
+    background-color: #3498db;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-weight: bold;
+    margin-left: 10px;
+    display: inline-block;
+}
+
+/* Expanded Todo Styles */
+.todo-details {
+    margin-top: 10px;
+    background-color: #f4f4f9;
+    padding: 10px;
+    border-radius: 4px;
+    display: none;
+}
+
+.todo-expanded .todo-details {
+    display: block;
+}
+
+/* Button Styles */
+button {
+    background-color: #3498db;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+    align-self: flex-start;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+button:focus {
+    outline: none;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    #container {
+        padding: 15px;
+    }
+
+    .project h2 {
+        font-size: 1.25rem;
+    }
+
+    .todo h1 {
+        font-size: 1rem;
+    }
+}
+
+/* Hover Effects */
+.todo:hover {
+    background-color: #f0f4fc;
+    border-color: #3498db;
+}
+
+/* Inline Editing (Optional) */
+.todo[contenteditable="true"] {
+    outline: 1px dashed #3498db;
+    padding: 8px;
+    margin: -8px;
+}
+
+.todo-expanded p {
+    display: block; /* Show details when expanded */
+}
+
+.formedit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff; /* White background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+    width: 100%; /* Responsive width */
+    max-width: 300px; /* Limit maximum size */
+    z-index: 1000; /* Ensure it sits above other elements */
+}
+
+.edit-form {
+    display: flex;
+    flex-direction: column; /* Stack form elements vertically */
+    gap: 15px; /* Space between elements */
+    padding: 30px;
+}
+
+.edit-form input,
+.edit-form textarea,
+.edit-form select {
+    width: 100%; /* Full width */
+    padding: 10px; /* Space inside the input */
+    font-size: 16px; /* Readable text */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 5px; /* Slightly rounded corners */
+    outline: none; /* Remove default focus outline */
+    box-sizing: border-box; /* Include padding and border in the width */
+    transition: border-color 0.3s ease; /* Smooth border change on focus */
+}
+
+/* Input Focus */
+.edit-form input:focus,
+.edit-form textarea:focus,
+.edit-form select:focus {
+    border-color: #007bff; /* Highlight border on focus */
+}
+
+/* Textarea Styling */
+.edit-form textarea {
+    resize: none; /* Prevent resizing */
+    min-height: 100px; /* Ensure enough space */
+}
+
+/* Button Container */
+.formButton {
+    display: flex;
+    justify-content: space-between; /* Buttons on opposite sides */
+}
+
+/* Buttons */
+.edit-form button {
+    flex: 1; /* Buttons are equally sized */
+    padding: 10px 20px; /* Comfortable size */
+    font-size: 16px; /* Readable text */
+    border: none; /* Remove default borders */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor for buttons */
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+/* Save Button */
+.edit-form button[type="submit"] {
+    background-color: #007bff; /* Primary blue */
+    color: white; /* White text */
+    margin-right: 10px; /* Space between save and cancel */
+}
+
+.edit-form button[type="submit"]:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Cancel Button */
+.edit-form button[type="button"] {
+    background-color: #f8f9fa; /* Light gray */
+    color: #333; /* Dark text */
+}
+
+.edit-form button[type="button"]:hover {
+    background-color: #e2e6ea; /* Darker gray on hover */
+}
+
+
+/* Show Overlay when Form is Open */
+.formedit:not(:empty) ~ body::after {
+    display: block; /* Show overlay only if formedit has content */
+}
+
